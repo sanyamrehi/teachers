@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: teachers-laravel
+    env: php
+    plan: free
+    region: oregon
+    buildCommand: |
+      composer install --no-dev --optimize-autoloader
+      php artisan config:cache
+    startCommand: php artisan serve --host=0.0.0.0 --port=10000
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_URL
+        value: https://teachers-laravel.onrender.com
+      - key: APP_KEY
+        value: base64:put_your_generated_key_here
+      - key: DB_CONNECTION
+        value: mysql
+      - key: DB_HOST
+        value: your-db-host
+      - key: DB_PORT
+        value: 3306
+      - key: DB_DATABASE
+        value: your-db-name
+      - key: DB_USERNAME
+        value: your-db-user
+      - key: DB_PASSWORD
+        value: your-db-pass
